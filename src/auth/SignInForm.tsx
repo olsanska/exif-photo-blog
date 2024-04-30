@@ -49,7 +49,7 @@ export default function SignInForm() {
               id="email"
               inputRef={emailRef}
               label="Admin Email"
-              type="email"
+              type="text"
               value={email}
               onChange={setEmail}
             />
