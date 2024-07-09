@@ -129,11 +129,8 @@ export const uploadPhotoFromClient = async (
   file: File | Blob,
   extension = 'jpg',
 ) => (
-  CURRENT_STORAGE === 'cloudflare-r2' ||
-  CURRENT_STORAGE === 'aws-s3'
-)
-  ? uploadFromClientViaPresignedUrl(file, PREFIX_UPLOAD, extension, true)
-  : vercelBlobUploadFromClient(file, `${PREFIX_UPLOAD}.${extension}`);
+  vercelBlobUploadFromClient(file, `${PREFIX_UPLOAD}.${extension}`))
+
 
 export const putFile = (
   file: Buffer,
