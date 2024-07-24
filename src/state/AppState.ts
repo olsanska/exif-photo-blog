@@ -17,6 +17,7 @@ export interface AppStateContext {
   setIsCommandKOpen?: Dispatch<SetStateAction<boolean>>
   //  ADMIN
   userEmail?: string
+  // userEmail?: string | 'jo'
   setUserEmail?: Dispatch<SetStateAction<string | undefined>>
   isUserSignedIn?: boolean
   adminUpdateTimes?: Date[]

@@ -28,10 +28,14 @@ export default function SignInForm() {
   }, []);
 
   useEffect(() => {
+    // console.log('SIGN IN FORM', userEmail)
     return () => {
       // Capture user email before unmounting
-      getAuthAction().then(auth =>
-        setUserEmail?.(auth?.user?.email ?? undefined));
+      getAuthAction().then((auth) => {
+        // console.log('SIGN IN FORM', auth?.user, auth?.user?.email)
+        setUserEmail?.(auth?.user?.email ?? undefined)
+      })
+
     };
   }, [setUserEmail]);
 

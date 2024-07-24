@@ -37,6 +37,9 @@ export default function Nav({
 
   const showNav = !isPathSignIn(pathname);
 
+  // console.log(isUserSignedIn)
+  // console.log(isUserSignedIn && !isPathAdmin(pathname))
+
   const renderLink = (
     text: string,
     linkOrAction: string | (() => void),
@@ -101,6 +104,7 @@ export default function Nav({
       contentSide={isUserSignedIn && !isPathAdmin(pathname)
         ? <div
           className={clsx(
+            '🌸 JO',
             'flex items-center translate-x-[-6px] w-full',
             NAV_HEIGHT_CLASS,
           )}

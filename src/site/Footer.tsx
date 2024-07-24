@@ -55,6 +55,13 @@ export default function Footer() {
                         </SubmitButtonWithStatus>
                       </form>
                     </>}
+                    {/* <p>userEmail {userEmail && userEmail}</p>
+                    <form action={() => signOutAndRedirectAction()
+                      .then(() => setUserEmail?.(undefined))}>
+                      <SubmitButtonWithStatus styleAs="link">
+                        Sign out
+                      </SubmitButtonWithStatus>
+                    </form> */}
                   </>
                   : <>
                     <Link href={PATH_ADMIN_PHOTOS}>
