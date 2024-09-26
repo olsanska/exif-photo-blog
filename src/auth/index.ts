@@ -41,9 +41,9 @@ export const {
       return isRequestAuthorized;
     },
   },
-  // pages: {
-  //   signIn: '/sign-in',
-  // },
+  pages: {
+    signIn: '/sign-in',
+  },
 });
 
 export const runAuthenticatedAdminServerAction = async <T>(

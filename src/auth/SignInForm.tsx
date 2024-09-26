@@ -48,7 +48,8 @@ export default function SignInForm() {
         'flex gap-3 items-center justify-center',
         'self-start text-2xl mb-3.5',
       )}>
-        <FiLock className="text-main translate-y-[0.5px]" />
+        <FiLock />
+        {/* <FiLock className="text-main translate-y-[0.5px]" /> */}
         <span className="text-main">
           Sign in
         </span>
