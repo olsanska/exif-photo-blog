@@ -3,7 +3,7 @@ import { formatFocalLength } from '@/focal';
 import { Lens } from '@/lens';
 import { getNextImageUrlForRequest } from '@/services/next-image';
 import { FilmSimulation } from '@/simulation';
-import { HIGH_DENSITY_GRID, SHOW_EXIF_DATA } from '@/site/config';
+import { HIGH_DENSITY_GRID, IS_PREVIEW, SHOW_EXIF_DATA } from '@/site/config';
 import { ABSOLUTE_PATH_FOR_HOME_IMAGE } from '@/site/paths';
 import { formatDate, formatDateFromPostgresString } from '@/utility/date';
 import {
@@ -112,7 +112,7 @@ export interface PhotoSetAttributes {
 
 export const parsePhotoFromDb = (photoDbRaw: PhotoDb): Photo => {
   const photoDb = camelcaseKeys(
-    photoDbRaw as unknown as Record<string, unknown>
+    photoDbRaw as unknown as Record<string, unknown>,
   ) as unknown as PhotoDb;
   return {
     ...photoDb,
@@ -193,7 +193,7 @@ export const generateOgImageMetaForPhotos = (photos: Photo[]): Metadata => {
 };
 
 const PHOTO_ID_FORWARDING_TABLE: Record<string, string> = JSON.parse(
-  process.env.PHOTO_ID_FORWARDING_TABLE || '{}'
+  process.env.PHOTO_ID_FORWARDING_TABLE || '{}',
 );
 
 export const translatePhotoId = (id: string) =>
@@ -251,7 +251,7 @@ export const descriptionForPhotoSet = (
 
 const sortPhotosByDate = (
   photos: Photo[],
-  order: 'ASC' | 'DESC' = 'DESC'
+  order: 'ASC' | 'DESC' = 'DESC',
 ) =>
   [...photos].sort((a, b) => order === 'DESC'
     ? b.takenAt.getTime() - a.takenAt.getTime()
@@ -307,8 +307,16 @@ export const getKeywordsForPhoto = (photo: Photo) =>
     .filter(Boolean)
     .map(keyword => keyword.toLocaleLowerCase());
 
-export const isNextImageReadyBasedOnPhotos = async (photos: Photo[]) =>
-  photos.length > 0 && fetch(getNextImageUrlForRequest(photos[0].url, 640))
+export const isNextImageReadyBasedOnPhotos = async (
+  photos: Photo[],
+): Promise<boolean> =>
+  photos.length > 0 && fetch(getNextImageUrlForRequest(
+    photos[0].url,
+    640,
+    undefined,
+    undefined,
+    IS_PREVIEW,
+  ))
     .then(response => response.ok)
     .catch(() => false);
 
