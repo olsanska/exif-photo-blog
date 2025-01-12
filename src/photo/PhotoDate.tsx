@@ -11,6 +11,7 @@ export default function PhotoDate({
   className?: string
   dateType?: 'takenAt' | 'createdAt' | 'updatedAt'
 }) {
+  
   const date = useMemo(() => {
     const date = new Date(dateType === 'takenAt'
       ? photo.takenAtNaive
