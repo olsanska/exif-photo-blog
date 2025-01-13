@@ -9,7 +9,6 @@ import { useAppState } from '@/state/AppState';
 
 export default function ShareModals() {
   const { shareModalProps = {} } = useAppState();
-  
   const {
     photo,
     photos,
