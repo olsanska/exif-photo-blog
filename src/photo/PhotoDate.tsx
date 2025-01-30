@@ -8,11 +8,13 @@ export default function PhotoDate({
   className,
   dateType = 'takenAt',
   timezone,
+  hideTime,
 }: {
   photo: Photo
   className?: string
   dateType?: 'takenAt' | 'createdAt' | 'updatedAt'
   timezone: Timezone
+  hideTime?: boolean
 }) {
   
   const date = useMemo(() => {
@@ -46,6 +48,7 @@ export default function PhotoDate({
       className,
       titleLabel: getTitleLabel(),
       timezone,
+      hideTime,
     }} />
   );
 }
